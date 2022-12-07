@@ -7,7 +7,7 @@ use std::{str::FromStr, fmt::Display};
 enum Args {
     /// Calorie Counting
     ///
-    /// Summing groups of numbers.
+    /// Summing groups of numbers and then summing best 3 groups.
     Day1(Opts)
 }
 use Args::*;
