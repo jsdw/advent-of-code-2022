@@ -31,6 +31,7 @@ pub fn star2(file: File) -> Result<u32, anyhow::Error> {
         let b: HashSet<char> = c.next()?.chars().collect();
         let c: HashSet<char> = c.next()?.chars().collect();
 
+        // Yes, more efficient ways to do all of this set stuff, but for the sake of getting it done...
         let dupe_n = *a.intersection(&b).cloned().collect::<HashSet<char>>().intersection(&c).next()? as u32;
 
         if dupe_n >= 97 {

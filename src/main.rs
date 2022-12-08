@@ -17,7 +17,8 @@ enum Args {
     Day2(Opts),
     /// Rucksack Reorganization
     ///
-    /// Find the duplicate letter ineach half of a string (packing items into compartments).
+    /// Find the duplicate letter in each half of a string (packing items into compartments),
+    /// and then in each group of 3 strings.
     Day3(Opts),
 }
 
