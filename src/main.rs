@@ -1,4 +1,6 @@
 mod day01;
+mod day02;
+mod day03;
 
 use clap::Parser;
 use std::{str::FromStr, fmt::Display};
@@ -8,9 +10,30 @@ enum Args {
     /// Calorie Counting
     ///
     /// Summing groups of numbers and then summing best 3 groups.
-    Day1(Opts)
+    Day1(Opts),
+    /// Rock Paper Scissors
+    ///
+    /// Using set moves to win.
+    Day2(Opts),
+    /// Rucksack Reorganization
+    ///
+    /// Find the duplicate letter ineach half of a string (packing items into compartments).
+    Day3(Opts),
 }
-use Args::*;
+
+fn main() {
+    use Args::*;
+    let args = Args::parse();
+
+    match args {
+        Day1(Opts { star: Star::One, file }) => print(day01::star1(file)),
+        Day1(Opts { star: Star::Two, file }) => print(day01::star2(file)),
+        Day2(Opts { star: Star::One, file }) => print(day02::star1(file)),
+        Day2(Opts { star: Star::Two, file }) => print(day02::star2(file)),
+        Day3(Opts { star: Star::One, file }) => print(day03::star1(file)),
+        Day3(Opts { star: Star::Two, file }) => print(day03::star2(file)),
+    }
+}
 
 #[derive(Copy,Clone,PartialEq,Eq,Debug)]
 enum Star {
@@ -50,25 +73,9 @@ impl FromStr for File {
     }
 }
 
-trait PrintStar {
-    fn print_star(&self);
-}
-impl <T: Display, E: std::fmt::Debug> PrintStar for Result<T,E> {
-    fn print_star(&self) {
-        match self {
-            Ok(res) => println!("{res}"),
-            Err(e) => eprintln!("Error: {e:?}")
-        }
+fn print<T: Display, E: std::fmt::Debug>(val: Result<T, E>) {
+    match val {
+        Ok(res) => println!("{res}"),
+        Err(e) => eprintln!("Error: {e:?}")
     }
-}
-
-fn main() {
-    let args = Args::parse();
-
-    let res: Box<dyn PrintStar> = Box::new(match args {
-        Day1(Opts { star: Star::One, file }) => day01::star1(file),
-        Day1(Opts { star: Star::Two, file }) => day01::star2(file)
-    });
-
-    res.print_star();
 }
