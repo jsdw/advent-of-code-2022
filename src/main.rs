@@ -1,6 +1,8 @@
+#[macro_use] mod utils;
 mod day01;
 mod day02;
 mod day03;
+mod day04;
 
 use clap::Parser;
 use std::{str::FromStr, fmt::Display};
@@ -20,6 +22,10 @@ enum Args {
     /// Find the duplicate letter in each half of a string (packing items into compartments),
     /// and then in each group of 3 strings.
     Day3(Opts),
+    /// Camp Cleanup
+    ///
+    /// Find overlapping work schedules.
+    Day4(Opts),
 }
 
 fn main() {
@@ -33,6 +39,8 @@ fn main() {
         Day2(Opts { star: Star::Two, file }) => print(day02::star2(file)),
         Day3(Opts { star: Star::One, file }) => print(day03::star1(file)),
         Day3(Opts { star: Star::Two, file }) => print(day03::star2(file)),
+        Day4(Opts { star: Star::One, file }) => print(day04::star1(file)),
+        Day4(Opts { star: Star::Two, file }) => print(day04::star2(file)),
     }
 }
 
