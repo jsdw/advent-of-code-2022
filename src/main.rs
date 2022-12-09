@@ -3,6 +3,7 @@ mod day01;
 mod day02;
 mod day03;
 mod day04;
+mod day05;
 
 use clap::Parser;
 use std::{str::FromStr, fmt::Display};
@@ -26,6 +27,10 @@ enum Args {
     ///
     /// Find overlapping work schedules.
     Day4(Opts),
+    /// Supply Stacks
+    ///
+    /// Rearranging crates stacked on top of eachother by following instructions.
+    Day5(Opts),
 }
 
 fn main() {
@@ -41,6 +46,8 @@ fn main() {
         Day3(Opts { star: Star::Two, file }) => print(day03::star2(file)),
         Day4(Opts { star: Star::One, file }) => print(day04::star1(file)),
         Day4(Opts { star: Star::Two, file }) => print(day04::star2(file)),
+        Day5(Opts { star: Star::One, file }) => print(day05::star1(file)),
+        Day5(Opts { star: Star::Two, file }) => print(day05::star2(file)),
     }
 }
 
