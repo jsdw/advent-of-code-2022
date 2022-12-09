@@ -4,6 +4,7 @@ mod day02;
 mod day03;
 mod day04;
 mod day05;
+mod day06;
 
 use clap::Parser;
 use std::{str::FromStr, fmt::Display};
@@ -31,6 +32,10 @@ enum Args {
     ///
     /// Rearranging crates stacked on top of eachother by following instructions.
     Day5(Opts),
+    /// Tuning Trouble
+    ///
+    /// Find first 4 or 14 non-repeating letters.
+    Day6(Opts),
 }
 
 fn main() {
@@ -48,6 +53,8 @@ fn main() {
         Day4(Opts { star: Star::Two, file }) => print(day04::star2(file)),
         Day5(Opts { star: Star::One, file }) => print(day05::star1(file)),
         Day5(Opts { star: Star::Two, file }) => print(day05::star2(file)),
+        Day6(Opts { star: Star::One, file }) => print(day06::star1(file)),
+        Day6(Opts { star: Star::Two, file }) => print(day06::star2(file)),
     }
 }
 
