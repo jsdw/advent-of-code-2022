@@ -5,6 +5,7 @@ mod day03;
 mod day04;
 mod day05;
 mod day06;
+mod day07;
 
 use clap::Parser;
 use std::{str::FromStr, fmt::Display};
@@ -36,6 +37,10 @@ enum Args {
     ///
     /// Find first 4 or 14 non-repeating letters.
     Day6(Opts),
+    /// No Space Left On Device
+    ///
+    /// Parse terminal commands to worrk out file structure and sizes of things.
+    Day7(Opts),
 }
 
 fn main() {
@@ -55,6 +60,8 @@ fn main() {
         Day5(Opts { star: Star::Two, file }) => print(day05::star2(file)),
         Day6(Opts { star: Star::One, file }) => print(day06::star1(file)),
         Day6(Opts { star: Star::Two, file }) => print(day06::star2(file)),
+        Day7(Opts { star: Star::One, file }) => print(day07::star1(file)),
+        Day7(Opts { star: Star::Two, file }) => print(day07::star2(file)),
     }
 }
 

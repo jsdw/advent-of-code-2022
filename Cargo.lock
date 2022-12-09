@@ -10,6 +10,7 @@ dependencies = [
  "clap",
  "itertools",
  "regex",
+ "yap",
 ]
 
 [[package]]
@@ -292,3 +293,9 @@ name = "winapi-x86_64-pc-windows-gnu"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
+
+[[package]]
+name = "yap"
+version = "0.8.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "389fc8774e00f8c6d9e43cb8a4dd8b3bac8ec49c48e8006a0a9ea7c4080019ef"
