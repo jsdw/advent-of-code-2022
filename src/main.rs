@@ -6,6 +6,9 @@ mod day04;
 mod day05;
 mod day06;
 mod day07;
+mod day08;
+mod day09;
+
 
 use clap::Parser;
 use std::{str::FromStr, fmt::Display};
@@ -41,6 +44,14 @@ enum Args {
     ///
     /// Parse terminal commands to worrk out file structure and sizes of things.
     Day7(Opts),
+    /// Treetop Tree House
+    ///
+    /// Counting visible trees in a grid based on their height.
+    Day8(Opts),
+    /// Rope Bridge
+    ///
+    /// A rope tail following a head around.
+    Day9(Opts),
 }
 
 fn main() {
@@ -62,6 +73,10 @@ fn main() {
         Day6(Opts { star: Star::Two, file }) => print(day06::star2(file)),
         Day7(Opts { star: Star::One, file }) => print(day07::star1(file)),
         Day7(Opts { star: Star::Two, file }) => print(day07::star2(file)),
+        Day8(Opts { star: Star::One, file }) => print(day08::star1(file)),
+        Day8(Opts { star: Star::Two, file }) => print(day08::star2(file)),
+        Day9(Opts { star: Star::One, file }) => print(day09::star1(file)),
+        Day9(Opts { star: Star::Two, file }) => print(day09::star2(file)),
     }
 }
 
