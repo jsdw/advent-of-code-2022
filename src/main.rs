@@ -8,7 +8,7 @@ mod day06;
 mod day07;
 mod day08;
 mod day09;
-
+mod day10;
 
 use clap::Parser;
 use std::{str::FromStr, fmt::Display};
@@ -52,6 +52,10 @@ enum Args {
     ///
     /// A rope tail following a head around.
     Day9(Opts),
+    /// Cathode-Ray Tube
+    ///
+    /// Basic assemblu; noop & addx. Check value of X at cycles.
+    Day10(Opts),
 }
 
 fn main() {
@@ -77,6 +81,8 @@ fn main() {
         Day8(Opts { star: Star::Two, file }) => print(day08::star2(file)),
         Day9(Opts { star: Star::One, file }) => print(day09::star1(file)),
         Day9(Opts { star: Star::Two, file }) => print(day09::star2(file)),
+        Day10(Opts { star: Star::One, file }) => print(day10::star1(file)),
+        Day10(Opts { star: Star::Two, file }) => print(day10::star2(file)),
     }
 }
 
