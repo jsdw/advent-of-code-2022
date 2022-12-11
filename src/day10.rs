@@ -1,20 +1,45 @@
 use super::File;
+use itertools::Itertools;
 
-pub fn star1(file: File) -> Result<usize, anyhow::Error> {
-    let n = parse_input(&file.contents).filter(|(a, b)| {
-        (a.0 >= b.0 && a.1 <= b.1) || (b.0 >= a.0 && b.1 <= a.1)
-    }).count();
+pub fn star1(file: File) -> Result<i64, anyhow::Error> {
+    let cmds = parse_input(&file.contents);
+    let mut cpu = Machine::new(cmds.collect());
 
-    Ok(n)
+    let mut signal_strength = 0;
+    while cpu.step() {
+        // "during cycle 20" is the same result as "after cycle 19", so we add
+        // 1 to the cycle counter to record the result.
+        if [20,60,100,140,180,220].iter().contains(&(cpu.counter() + 1)) {
+            signal_strength += cpu.x() * (cpu.counter() + 1) as i64;
+        }
+    }
+
+    Ok(signal_strength)
 }
 
-pub fn star2(file: File) -> Result<usize, anyhow::Error> {
-    let n = parse_input(&file.contents).filter(|(a, b)| {
-        (a.0 >= b.0 && a.0 <= b.1) || (a.1 >= b.0 && a.1 <= b.1) ||
-        (b.0 >= a.0 && b.0 <= a.1) || (b.1 >= a.1 && b.1 <= a.1)
-    }).count();
+pub fn star2(file: File) -> Result<&'static str, anyhow::Error> {
+    let cmds = parse_input(&file.contents);
+    let mut cpu = Machine::new(cmds.collect());
 
-    Ok(n)
+    // during cycle 1 (eg at cycle 0) print '#' to start:
+    print!("#");
+    let mut x = 1;
+
+    while cpu.step() {
+        if ((cpu.x()-1)..=(cpu.x()+1)).contains(&x) {
+            print!("#");
+        } else {
+            print!(".");
+        }
+
+        x += 1;
+        if x == 40 {
+            x = 0;
+            println!();
+        }
+    }
+
+    Ok("")
 }
 
 fn parse_input(input: &str) -> impl Iterator<Item=Instruction> + '_ {
@@ -69,6 +94,12 @@ impl Machine {
             instructions
         }
     }
+    fn counter(&self) -> usize {
+        self.counter
+    }
+    fn x(&self) -> i64 {
+        self.x
+    }
     fn step(&mut self) -> bool {
         // load current instruction
         let (delay, ins) = match &mut self.instruction {
@@ -90,7 +121,7 @@ impl Machine {
         if *delay == 0 {
             match ins {
                 Instruction::Addx(n) => {
-                    self.x += n;
+                    self.x += *n;
                 },
                 Instruction::Noop => {
                     // do nothing.
