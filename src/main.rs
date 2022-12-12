@@ -10,6 +10,7 @@ mod day08;
 mod day09;
 mod day10;
 mod day11;
+mod day12;
 
 use clap::Parser;
 use std::{str::FromStr, fmt::Display};
@@ -62,6 +63,10 @@ enum Args {
     /// Monkeys throwing items to eachother with rules. Hardcoded, so no file input.
     /// Couldn't be bothered to parse it.
     Day11{ star: Star },
+    /// Hill Climbing Algorithm
+    ///
+    /// Find the shortest path up a hill.
+    Day12(Opts),
 }
 
 fn main() {
@@ -91,6 +96,8 @@ fn main() {
         Day10(Opts { star: Star::Two, file }) => print(day10::star2(file)),
         Day11{ star: Star::One } => print(day11::star1()),
         Day11{ star: Star::Two } => print(day11::star2()),
+        Day12(Opts { star: Star::One, file }) => print(day12::star1(file)),
+        Day12(Opts { star: Star::Two, file }) => print(day12::star2(file)),
     }
 }
 
