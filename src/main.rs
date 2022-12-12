@@ -9,6 +9,7 @@ mod day07;
 mod day08;
 mod day09;
 mod day10;
+mod day11;
 
 use clap::Parser;
 use std::{str::FromStr, fmt::Display};
@@ -54,8 +55,13 @@ enum Args {
     Day9(Opts),
     /// Cathode-Ray Tube
     ///
-    /// Basic assemblu; noop & addx. Check value of X at cycles.
+    /// Basic assembly; noop & addx. Check value of X at cycles. Print a message.
     Day10(Opts),
+    /// Monkey in the Middle
+    ///
+    /// Monkeys throwing items to eachother with rules. Hardcoded, so no file input.
+    /// Couldn't be bothered to parse it.
+    Day11{ star: Star },
 }
 
 fn main() {
@@ -83,6 +89,8 @@ fn main() {
         Day9(Opts { star: Star::Two, file }) => print(day09::star2(file)),
         Day10(Opts { star: Star::One, file }) => print(day10::star1(file)),
         Day10(Opts { star: Star::Two, file }) => print(day10::star2(file)),
+        Day11{ star: Star::One } => print(day11::star1()),
+        Day11{ star: Star::Two } => print(day11::star2()),
     }
 }
 
