@@ -12,6 +12,7 @@ mod day10;
 mod day11;
 mod day12;
 mod day13;
+mod day14;
 
 use clap::Parser;
 use std::{str::FromStr, fmt::Display};
@@ -70,8 +71,12 @@ enum Args {
     Day12(Opts),
     /// Distress Signal
     ///
-    /// Compare pairs of items/lists of items.
+    /// Compare pairs of items/lists of items, and then sort them.
     Day13(Opts),
+    /// Regolith Reservoir
+    ///
+    /// Simulate falling sand and see how much settles.
+    Day14(Opts),
 }
 
 fn main() {
@@ -105,6 +110,8 @@ fn main() {
         Day12(Opts { star: Star::Two, file }) => print(day12::star2(file)),
         Day13(Opts { star: Star::One, file }) => print(day13::star1(file)),
         Day13(Opts { star: Star::Two, file }) => print(day13::star2(file)),
+        Day14(Opts { star: Star::One, file }) => print(day14::star1(file)),
+        Day14(Opts { star: Star::Two, file }) => print(day14::star2(file)),
     }
 }
 
