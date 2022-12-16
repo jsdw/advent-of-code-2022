@@ -13,6 +13,7 @@ mod day11;
 mod day12;
 mod day13;
 mod day14;
+mod day15;
 
 use clap::Parser;
 use std::{str::FromStr, fmt::Display};
@@ -63,7 +64,7 @@ enum Args {
     /// Monkey in the Middle
     ///
     /// Monkeys throwing items to eachother with rules. Hardcoded, so no file input.
-    /// Couldn't be bothered to parse it.
+    /// Couldn't be bothered to parse it. Liked the part 2.
     Day11{ #[clap(short,long)] star: Star },
     /// Hill Climbing Algorithm
     ///
@@ -77,6 +78,10 @@ enum Args {
     ///
     /// Simulate falling sand and see how much settles.
     Day14(Opts),
+    /// Beacon Exclusion Zone
+    ///
+    /// Sensors and beacons; which square is the actual beacon on?
+    Day15(Opts),
 }
 
 fn main() {
@@ -112,6 +117,8 @@ fn main() {
         Day13(Opts { star: Star::Two, file }) => print(day13::star2(file)),
         Day14(Opts { star: Star::One, file }) => print(day14::star1(file)),
         Day14(Opts { star: Star::Two, file }) => print(day14::star2(file)),
+        Day15(Opts { star: Star::One, file }) => print(day15::star1(file)),
+        Day15(Opts { star: Star::Two, file }) => print(day15::star2(file)),
     }
 }
 
