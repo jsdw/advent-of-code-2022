@@ -2,10 +2,9 @@ use super::File;
 use std::collections::HashSet;
 
 pub fn star1(file: File) -> Result<usize, anyhow::Error> {
-    const ROW: i64 = 2_000_000;
-
     let sensors: Vec<Sensor> = Sensor::expect_from_lines(&file.contents).collect();
 
+    const ROW: i64 = 2_000_000;
     let taken_ranges = taken_ranges_in_row(&sensors, ROW);
 
     // The less lazy way would be to merge any overlapping ranges and then count
@@ -21,9 +20,9 @@ pub fn star1(file: File) -> Result<usize, anyhow::Error> {
 }
 
 pub fn star2(file: File) -> Result<i64, anyhow::Error> {
-    const MAX: i64 = 4_000_000;
     let sensors: Vec<Sensor> = Sensor::expect_from_lines(&file.contents).collect();
 
+    const MAX: i64 = 4_000_000;
     for y in 0 ..= MAX {
         if let Some(x) = find_free_spot_in_row(&sensors, y, MAX) {
             return Ok(x * MAX + y)
@@ -31,15 +30,6 @@ pub fn star2(file: File) -> Result<i64, anyhow::Error> {
     }
 
     anyhow::bail!("Could not find any free location for the beacon");
-}
-
-
-
-struct Sensor {
-    x: i64,
-    y: i64,
-    beacon_x: i64,
-    beacon_y: i64
 }
 
 fn find_free_spot_in_row(sensors: &[Sensor], row: i64, max: i64) -> Option<i64> {
@@ -76,6 +66,13 @@ fn taken_ranges_in_row(sensors: &[Sensor], row: i64) -> impl Iterator<Item=(i64,
             Some(range)
         }
     })
+}
+
+struct Sensor {
+    x: i64,
+    y: i64,
+    beacon_x: i64,
+    beacon_y: i64
 }
 
 impl Sensor {
