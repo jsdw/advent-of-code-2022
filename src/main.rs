@@ -14,6 +14,7 @@ mod day12;
 mod day13;
 mod day14;
 mod day15;
+mod day16;
 
 use clap::Parser;
 use std::{str::FromStr, fmt::Display};
@@ -82,6 +83,10 @@ enum Args {
     ///
     /// Sensors and beacons; which square is the actual beacon on?
     Day15(Opts),
+    /// Proboscidea Volcanium
+    ///
+    /// Searching tunnels and release valves to find best order to release most pressure.
+    Day16(Opts),
 }
 
 fn main() {
@@ -119,6 +124,8 @@ fn main() {
         Day14(Opts { star: Star::Two, file }) => print(day14::star2(file)),
         Day15(Opts { star: Star::One, file }) => print(day15::star1(file)),
         Day15(Opts { star: Star::Two, file }) => print(day15::star2(file)),
+        Day16(Opts { star: Star::One, file }) => print(day16::star1(file)),
+        Day16(Opts { star: Star::Two, file }) => print(day16::star2(file)),
     }
 }
 
